@@ -30,11 +30,11 @@ web端提供一个链接 -> 节点运行 ->在web端可进行在线扫描等的操作
 
 ## 图片展示
 首页
-
-添加任务 暂时仅写了这么几个功能，代码简单易懂，照着参考就可以编写更多插件
+![1](https://user-images.githubusercontent.com/18695984/27781327-f4cfc320-5fff-11e7-81be-c5281c140551.jpg)
 
 加入任务完成后 在本地执行命令即可
-
+![4](https://user-images.githubusercontent.com/18695984/27781403-4bb7451e-6000-11e7-97a1-08698042f052.jpg)
+![5](https://user-images.githubusercontent.com/18695984/27781404-4bba7a90-6000-11e7-8ce4-8a0464fc55e0.jpg)
 任务管理可查看任务
 
 会自动生成漏洞报告
