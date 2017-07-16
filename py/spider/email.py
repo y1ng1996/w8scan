@@ -4,7 +4,7 @@ def run(url='',body=''):
     email_list = re.findall(pattern, body)
     if (email_list):
         for email in email_list:
-            print email
-            report.add_list("E-mail",email)
+            print "[e-mail] find! " + email
+            report.add_set("E-mail",email)
         return True
     return False

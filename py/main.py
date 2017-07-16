@@ -74,8 +74,19 @@ class w8_report(object):
             self.data[key] = []
         self.data[key].append(data)
 
+    def add_set(self, key, data):
+        if key not in self.data:
+            self.data[key] = set()
+        self.data[key].add(data)
+
     def _build(self):
-        return json.dumps(self.data)
+        return json.dumps(self.data,cls=SetEncoder)
+
+class SetEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, set):
+            return list(obj)
+        return json.JSONEncoder.default(self, obj)
 
 # spider code
 import re
