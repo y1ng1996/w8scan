@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 # 端口扫描插件
 import socket,time,thread
 import urlparse
@@ -23,13 +25,14 @@ class PortScan:
             if result == 0:
                 self.lock.acquire()
                 print  ip, ':', port, 'open'
-                report.add_list("端口",port)
+                report.add_list("Port",port)
                 self.lock.release()
             s.close()
         except:
             pass
 
-ip = gethostbyname(_U)    
-print "Start scan port -> IP:",ip
+ip = w8_Common.gethostbyname(_U)    
+print "[...] Start scan port -> IP:",ip
 PortScan(ip)
 report.send()
+print "[...] Stop PortScan"

@@ -1,7 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 # CMS识别插件
 import threading,Queue,sys
-reload(sys)
-sys.setdefaultcoding('utf-8')
 class Webcms:
     def __init__(self,url,threadNum):
         self.workQueue = Queue.Queue()
@@ -9,6 +9,7 @@ class Webcms:
         self.threadNum = threadNum
         self.NotFound = True
         self.result = ""
+        self.path = ""
 
     def th_whatweb(self):
         if(self.workQueue.empty()):
@@ -27,15 +28,17 @@ class Webcms:
         if(html is None):
             return False
         if cms["re"]:
-            if(html.find(cms["re"])!=-1):
+            if(cms["re"] in html):
                 self.result = cms["name"]
                 self.NotFound = False
+                self.path = _url + ":" + cms["re"]
                 return True
         else:
             md5 = w8_Common.get_md5(html)
             if(md5==cms["md5"]):
                 self.result = cms["name"]
                 self.NotFound = False
+                self.path = _url + ":" + cms["md5"]
                 return True
 
     def run(self):
@@ -61,13 +64,14 @@ class Webcms:
                     t.join()
 
             if (self.result):
-                print "[webcms]:%s cms is %s" % (self.url, self.result)
-                report.add("网站指纹",self.result)
+                print "[webcms]:%s is %s" % (self.url, self.result)
+                report.add("Whatcms",self.result)
             else:
-                print "[webcms]:%s cms NOTFound!" % self.url
-                report.add("网站指纹","Not Found!")
+                print "[webcms]:%s whatcms notfound!" % self.url
+                report.add("Whatcms","Not Found!")
             
 print "[...] Initialize whatweb module ..."
 wwb = Webcms(_U,100)
 wwb.run()
 report.send()
+print "[...] Stop Whatweb"

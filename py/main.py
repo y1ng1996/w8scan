@@ -1,7 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import urllib,hashlib,Queue,threading,json,urlparse,socket,base64
+import urllib,hashlib,Queue,threading,json,urlparse,socket,base64,time
 
+_DEBUG = True
+if _DEBUG:
+    _C = True
+    _Plugin = '["http:\/\/127.0.0.1\/w8scan\/py\/plugins\/burtdir.py","http:\/\/127.0.0.1\/w8scan\/py\/plugins\/portscan.py","http:\/\/127.0.0.1\/w8scan\/py\/plugins\/whatcms.py"]'
+    _SPlugin = '["http:\/\/127.0.0.1\/w8scan\/py\/spider\/2.py","http:\/\/127.0.0.1\/w8scan\/py\/spider\/email.py"]'
+    _B = 'http://127.0.0.1/w8scan/'
+    _U = 'https://yesfree.pw/'.rstrip('/')
+    _Token = '29128d13a3b25e81bae0aa61c30f31f1'
+    print "[...] w8scan is working!!!"
+    print "[...] Initialize engine ..."
+    time.sleep(2)
 # init hackhttp
 code = urllib.urlopen("https://raw.githubusercontent.com/BugScanTeam/hackhttp/master/hackhttp/hackhttp.py")
 exec(code.read())
@@ -14,89 +25,9 @@ global plugin,splugins
 plugin = json.loads(_Plugin)
 splugins = json.loads(_SPlugin)
 
-class w8_Common(object):
-    @staticmethod
-    def get(url):
-        hh = hackhttp()
-        try:
-            code, head, body, redirect, log = hh.http(url)
-        except Exception,e:
-            print Exception,":",e;
-            code,head,body,redirect,log = "","","","",""
-        return code,head,body,redirect,log
+code = urllib.urlopen(_B + "py/common/w8_comon.py")
+exec(code.read())
 
-    @staticmethod
-    def urlget(url):
-        return urllib.urlopen(url).read()
-    @staticmethod
-    def post(url,data):
-        hh = hackhttp()
-        try:
-            code, head, body, redirect, log = hh.http(url,post=data)
-        except Exception,e:
-            print Exception,":",e;
-            code,head,body,redirect,log = "","","","",""
-        return code, head, body, redirect, log
-
-    @staticmethod
-    def getheaders(url):
-        code, head, body, redirect, log = w8_Common.get(url)
-        if code != 200:
-            return 1
-        heads = head.split('\n')
-        strhead = ''
-        for i in heads:
-            if "Server" in i:
-                strhead = i.strip()
-            if "X-Powered-By" in i:
-                strhead = strhead + " " +i.strip()
-        return strhead
-
-    @staticmethod
-    def gettitle(url):
-        code, head, body, redirect, log = w8_Common.get(url)
-        if code != 200:
-            return 1
-        p = re.compile(r'<title>(.*)?</title>',re.I)
-        title = p.findall(body)
-        if(len(title)==1):
-            return title[0]
-        elif(len(title)>1):
-            return title[0]
-        return None
-
-
-    @staticmethod
-    def get_md5(html):
-        m = hashlib.md5()
-        m.update(html)
-        md5 = m.hexdigest()
-        return md5
-
-    @staticmethod
-    def thread(func, args, thr):
-        '''[1] the func to run,[2] the func's args,[3] the thread nums'''
-        q = Queue.Queue()
-        t = []
-
-        def start(q):
-            while not q.empty():
-                func(q.get())
-
-        for a in args:
-            q.put(a)
-        for i in range(int(thr)):
-            tt = threading.Thread(target=start, args=(q,))
-            t.append(tt)
-        for i in range(int(thr)):
-            t[i].start()
-        for i in range(int(thr)):
-            # t[i].join(timeout=10)
-            t[i].join()
-
-class w8_report(object):
-    def send_report(self,data):
-        pass
 
 class UrlManager(object):
     def __init__(self):
@@ -123,6 +54,7 @@ class UrlManager(object):
         self.old_urls.add(new_url)
         return new_url
 
+# 传递报告类
 class w8_report(object):
     def __init__(self):
         self.data = {}
@@ -203,20 +135,13 @@ class SpiderMain(object):
             report.send()
 
 # _U = 'http://www.adfun.cn/'
-report = w8_report()
 
-def gethostbyname(url):
-    domain = urlparse.urlparse(url)
-    # domain.netloc
-    if domain.netloc is None:
-        return None
-    ip = socket.gethostbyname(domain.netloc)
-    return ip
+report = w8_report()
 
 def GetBaseInfo():
     report.add("server",w8_Common.getheaders(_U))
     report.add("title",w8_Common.gettitle(_U))
-    report.add("ip",gethostbyname(_U))
+    report.add("ip",w8_Common.gethostbyname(_U))
 GetBaseInfo()
 
 if plugin is not None:

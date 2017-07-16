@@ -1,4 +1,6 @@
-# 目录爆破插件
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Name:目录爆破插件
 import os
 class webdir:
     def __init__(self,root,threadNum):
@@ -9,7 +11,7 @@ class webdir:
         code, head, body, redirect, log = w8_Common.get(ls_url)
         if(code!=404):
             # print "[%s]%s"%(code,ls_url)
-            report.add_list("目录爆破",ls_url)
+            report.add_list("Dirburt",ls_url)
 
     def run(self):
         code, head, body, redirect, log = w8_Common.get("%s/py/data/dir.txt"%_B)
@@ -21,3 +23,4 @@ print "[...] Initialize DIRBURST ..."
 ww = webdir(_U,25)
 ww.run()
 report.send()
+print "[...] STOP DIRBURST"
