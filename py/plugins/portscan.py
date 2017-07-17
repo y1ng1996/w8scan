@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 端口扫描插件
+# Name:端口扫描插件
 import socket,time,thread
 import urlparse
 

@@ -13,19 +13,11 @@
     * @param $length 指定行返回内容长度
     */
     function getLine($file, $line, $length = 4096){
-        $returnTxt = null; // 初始化返回
-        $i = 1; // 行数
-    
-        $handle = @fopen($file, "r");
-        if ($handle) {
-            while (!feof($handle)) {
-                $buffer = fgets($handle, $length);
-                if($line == $i) $returnTxt = $buffer;
-                $i++;
-            }
-            fclose($handle);
-        }
-        return $returnTxt;
+        
+        $returnTxt = @implode('', @file($file));
+        preg_match("/Name:(.*)/i", $returnTxt, $tplName);
+        $tplName = !empty($tplName[1]) ? trim($tplName[1]) : substr(strrchr($file, "/"),1);
+        return $tplName;
     }
 
     /*
@@ -56,9 +48,8 @@
         $filenames = $this->tree($dirx);
         $info = array();
         foreach($filenames as $filename){
-            $rtext = $this->getLine($dirx.'/'.$filename,1);
-            $rtext = trim($rtext);
-            $descript = substr(strrchr($rtext, "#"), 1);
+            $rtext = $this->getLine($dirx.'/'.$filename,20);
+            $descript = trim($rtext);
             $tem_arr = [];
             $tem_arr["descript"] = $descript;
             $tem_arr["all_path"] = $dirx.'/'.$filename;

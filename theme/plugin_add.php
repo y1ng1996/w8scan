@@ -8,7 +8,7 @@ IsLogin()
 <div class="span9">
     <div class="row-fluid">
     <div class="page-header">
-        <h1>添加插件 <small>可添加插件或者exp，添加exp时请选择exp选项</small></h1>
+        <h1>添加插件 <small>可在线加入python脚本，确保py目录有可写权限</small></h1>
     </div>
     <form class="form-horizontal">
         <fieldset>
@@ -16,25 +16,22 @@ IsLogin()
             <div class="control-group">
                 <label class="control-label" for="role">Title</label>
                 <div class="controls">
-                    <input type="text" class="input-xlarge" id="role" placeholder="名称"/>
+                    <input type="text" class="input-xlarge" id="role" placeholder="名称 eg:sql"/>
                 </div>
             </div>
              <div class="control-group">
-                <label class="control-label" for="active">添加exp？</label>
+                <label class="control-label" for="active">插件类型</label>
                 <div class="controls">
-                    <input type="checkbox" id="active" value="1" checked />
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="description">Description</label>
-                <div class="controls">
-                    <textarea class="input-xlarge" id="description" rows="3" placeholder="描述"></textarea>
+                <select class="form-control ">
+                    <option>通用插件(/py/plugins)</option>
+                    <option>爬虫插件(/py/spider)</option>
+                </select>
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label" for="description">Pyhton</label>
                 <div class="controls">
-                    <textarea class="input-xlarge" id="description" rows="10" placeholder="python代码"></textarea>
+                    <textarea class="input-xlarge" id="description" rows="12" placeholder="python代码"></textarea>
                 </div>
             </div>
 

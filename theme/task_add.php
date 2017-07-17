@@ -33,13 +33,19 @@ IsLogin()
             <div class="control-group">
                 <label class="control-label" for="role">Target</label>
                 <div class="controls">
-                    <input type="text" class="input-xlarge" id="role" name="url" placeholder="url地址 http://xxx.com/"/>
+                    <input type="text" class="input-xlarge" id="role" name="url" placeholder="填写一个 Url地址 http://xxx.com/"/>
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label" for="description">Description</label>
                 <div class="controls">
-                    <textarea class="input-xlarge" id="description" name="descript" rows="3" placeholder="描述"></textarea>
+                    <textarea class="input-xlarge" id="description" name="descript" rows="3" placeholder="这里可以添加描述、备注"></textarea>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="description">Cookies</label>
+                <div class="controls">
+                    <textarea class="input-xlarge" id="Cookies" name="Cookies" rows="2" placeholder="Cookies可以默认不填"></textarea>
                 </div>
             </div>
             <div class="control-group">

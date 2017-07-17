@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# CMS识别插件
+# Name:CMS识别插件
 import threading,Queue,sys
 class Webcms:
     def __init__(self,url,threadNum):

@@ -8,34 +8,22 @@ IsLogin()
         <div class="span9">
 		  <div class="row-fluid">
 			<div class="page-header">
-				<h1>插件管理 <small>Total:(24)</small></h1>
+				<h1>插件管理 <small>Total: <?php $Splugins = new Splugins_Controller();echo $Splugins->getCount();?></small></h1>
 			</div>
 			<table class="table table-striped table-bordered table-condensed">
 				<thead>
 					<tr>
 						<th>ID</th>
 						<th>插件名称</th>
-						<th>插件描述</th>
-						<th>插件等级</th>
-						<th>插件作者</th>
+						<th>插件类型</th>
                         <th>插件地址</th>
 						<th>状态</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-				<tr class="list-users">
-					<td>1</td>
-					<td>XX插件</td>
-					<td>进行XX左右</td>
-					<td>高危</td>
-					<td>未ay</td>
-					<td>lib/xxx.py</td>
-					<td><span class="label label-success">running</span></td>
-					<td>
-							<a class="btn btn-mini" href="#">删除</a>
-					</td>
-				</tr>
+				<?php 
+				$Splugins->DisplayOnManager();?>
 				</tbody>
 			</table>
 			<div class="pagination">
@@ -50,7 +38,7 @@ IsLogin()
 					<li><a href="#">Next</a></li>
 				</ul>
 			</div>
-			<a href="new-user.html" class="btn btn-success">New User</a>
+			<a href="?plugin_add" class="btn btn-success">新插件</a>
 		  </div>
         </div>
       </div>

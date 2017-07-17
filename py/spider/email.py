@@ -1,4 +1,4 @@
-# E-mail搜索
+# Name:E-mail搜索
 def run(url='',body=''):
     pattern = re.compile(r'([\w-]+@[\w-]+\.[\w-]+)+')
     email_list = re.findall(pattern, body)
