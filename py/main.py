@@ -2,17 +2,6 @@
 # -*- coding: utf-8 -*-
 import urllib,hashlib,Queue,threading,json,urlparse,socket,base64,time
 
-_DEBUG = True
-if _DEBUG:
-    _C = True
-    _Plugin = '["http:\/\/127.0.0.1\/w8scan\/py\/plugins\/burtdir.py","http:\/\/127.0.0.1\/w8scan\/py\/plugins\/portscan.py","http:\/\/127.0.0.1\/w8scan\/py\/plugins\/whatcms.py"]'
-    _SPlugin = '["http:\/\/127.0.0.1\/w8scan\/py\/spider\/2.py","http:\/\/127.0.0.1\/w8scan\/py\/spider\/email.py"]'
-    _B = 'http://127.0.0.1/w8scan/'
-    _U = 'https://yesfree.pw/'.rstrip('/')
-    _Token = '29128d13a3b25e81bae0aa61c30f31f1'
-    print "[...] w8scan is working!!!"
-    print "[...] Initialize engine ..."
-    time.sleep(2)
 # init hackhttp
 code = urllib.urlopen("https://raw.githubusercontent.com/BugScanTeam/hackhttp/master/hackhttp/hackhttp.py")
 exec(code.read())

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Name:端口扫描插件
+# Descript:将对目标端口进行扫描，找出存活的端口
 import socket,time,thread
 import urlparse
 

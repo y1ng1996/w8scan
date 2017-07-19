@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import urlparse,socket
+import urlparse,socket,urllib2
 
 class w8_Common(object):
     @staticmethod

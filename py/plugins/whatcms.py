@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Name:CMS识别插件
+# Descript:验证网址使用了何种CMS
+
 import threading,Queue,sys
 class Webcms:
     def __init__(self,url,threadNum):

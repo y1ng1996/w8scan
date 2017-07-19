@@ -1,4 +1,5 @@
 # Name:E-mail搜索
+# Descript:搜索出网站的e-mail，并且能够去重复
 def run(url='',body=''):
     pattern = re.compile(r'([\w-]+@[\w-]+\.[\w-]+)+')
     email_list = re.findall(pattern, body)

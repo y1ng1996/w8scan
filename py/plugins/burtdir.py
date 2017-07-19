@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Name:目录爆破插件
+# Descript:根据内置字典爆破目录
 import os
 class webdir:
     def __init__(self,root,threadNum):

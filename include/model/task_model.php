@@ -83,5 +83,18 @@
         $res = $this->db->query($sql);
     }
 
+    /**
+	 * 删除文章
+	 *
+	 * @param int $blogId
+	 */
+	function deleteLog($blogId) {
+		$uid = (int)$_SESSION["uid"];
+		$author = 'and uid=' . $uid;
+		$this->db->query("DELETE FROM " . DB_PREFIX . "tasklist where id=$blogId $author");
+		if ($this->db->affected_rows() < 1) {
+			emMsg('权限不足！', './');
+		}
+	}
 
  }

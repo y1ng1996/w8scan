@@ -1,6 +1,6 @@
 <?php
 /*
- * 插件实现
+ * 任务管理实现
  */
 class Task_Controller {
 
@@ -25,6 +25,7 @@ class Task_Controller {
         include View::getview("task_manager"); 
     }
 
+    // 返回接口页面
     function task_callback($params = ''){
         if($params[1]=='/'&&!empty($params[2])){
             $token = $params[2];
@@ -34,6 +35,7 @@ class Task_Controller {
         }
     }
 
+    // 更新数据页面
     function reciver_data($params = ''){
         $data = addslashes($_POST["data"]);
         if($params[1]=='/'&&!empty($params[2])&&!empty($data)){
@@ -45,4 +47,17 @@ class Task_Controller {
             exit("sql error");//假错误
         }
     }
+
+    // 删除任务
+    function delete($params = ''){
+        if($params[1]=='/'&&!empty($params[2])){
+            $uid = $params[2];
+            $task = new Task_Model();
+            $task->deleteLog($uid);
+            emMsg("删除任务成功！");
+        }else{
+            exit("sql error");//假错误
+        }
+    }
+
 }

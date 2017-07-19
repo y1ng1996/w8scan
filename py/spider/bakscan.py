@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 基于爬虫扫描备份
+# Name:基于爬虫扫描备份
+# Descript:对爬虫获取的网站枚举后缀 .zip .bak 等等爆破出备份进行下载
 import sys
 import urlparse
 

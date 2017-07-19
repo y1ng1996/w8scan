@@ -47,7 +47,7 @@ IsLogin();
 							<a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">Actions <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a data-toggle="modal" data-target="#myModa<?php echo $k+1;?>"><i class="icon-user"></i> Details</a></li>
-								<li><a href="#"><i class="icon-trash"></i> Delete</a></li>
+								<li><a href="?delete/<?php echo $v["id"];?>"><i class="icon-trash"></i> Delete</a></li>
 							</ul>
 						</div>
 					</td>

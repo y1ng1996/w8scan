@@ -14,9 +14,9 @@ IsLogin()
         <fieldset>
            
             <div class="control-group">
-                <label class="control-label" for="role">Title</label>
+                <label class="control-label" for="role">Filename:</label>
                 <div class="controls">
-                    <input type="text" class="input-xlarge" id="role" placeholder="名称 eg:sql"/>
+                    <input type="text" class="input-xlarge" id="role" placeholder="不用以.py结尾 eg:sql_inject"/>
                 </div>
             </div>
              <div class="control-group">
@@ -25,6 +25,7 @@ IsLogin()
                 <select class="form-control ">
                     <option>通用插件(/py/plugins)</option>
                     <option>爬虫插件(/py/spider)</option>
+                    <option>POC插件(/py/poc)</option>
                 </select>
                 </div>
             </div>

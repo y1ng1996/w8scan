@@ -92,4 +92,6 @@ class Log_Model {
         $data = $this->db->once_fetch_array($sql);
 		return $data['total'];
 	}
+
+
 }

@@ -110,6 +110,11 @@
             ),
             array(
                 'controller' => 'Task_Controller',
+                'method' => 'delete',
+                'reg_0' => '|^.*/\?delete(/)?(\d+)?|'
+            ),
+            array(
+                'controller' => 'Task_Controller',
                 'method' => 'reciver_data',
                 'reg_0' => '|^.*/\?send(/)?(\w+)?|'
             ),

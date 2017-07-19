@@ -8,6 +8,9 @@ class Index_Controller {
         $this->Model_user = new User_Model();
     }
     function display($params = ''){
+        $plugin_info = new Splugins_Controller();
+        $plugin_count = $plugin_info->getCount();
+        $plugin_data = $plugin_info->DisplayOnHome();
         include View::getView("header");
         include View::getview("home");  //首页
     }

@@ -15,6 +15,7 @@ IsLogin()
 					<tr>
 						<th>ID</th>
 						<th>插件名称</th>
+						<th>插件描述</th>
 						<th>插件类型</th>
                         <th>插件地址</th>
 						<th>状态</th>
