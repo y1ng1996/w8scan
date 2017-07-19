@@ -8,7 +8,7 @@ IsLogin()
         <div class="span9">
 		  <div class="row-fluid">
 			<div class="page-header">
-				<h1>插件管理 <small>Total: <?php $Splugins = new Splugins_Controller();echo $Splugins->getCount();?></small></h1>
+				<h1>插件管理 <small>Total: <?php echo $count;?></small></h1>
 			</div>
 			<table class="table table-striped table-bordered table-condensed">
 				<thead>
@@ -23,8 +23,7 @@ IsLogin()
 					</tr>
 				</thead>
 				<tbody>
-				<?php 
-				$Splugins->DisplayOnManager();?>
+				<?php echo $Splugins->DisplayOnManager();?>
 				</tbody>
 			</table>
 			<div class="pagination">
