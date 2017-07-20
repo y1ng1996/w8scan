@@ -253,8 +253,16 @@ function pagination($count, $perlogs, $page, $url, $anchor = '') {
                 $re .= " <li><a href=\"$url$i$anchor\">$i</a></li> ";
             }
         }
+        if(($page==1||$page==2)&&$i == ($page + 2)){
+            $i1 = $i + 1;
+            $i2 = $i + 2;
+            $re .= " <li><a href=\"$url$i1$anchor\">$i1</a></li> ";
+            if($page==1){
+            $re .= " <li><a href=\"$url$i2$anchor\">$i2</a></li> ";
+            }
+        }
     }
-    if ($page >= 2)
+    if ($page >= 1)
         $re = "<li><a href=\"{$urlHome}\" title=\"首页\">首页</a></li>$re";
     if ($page != $pnums)
         $re .= "<li><a href=\"$url$pnums$anchor\" title=\"尾页\">尾页</a></li>";
