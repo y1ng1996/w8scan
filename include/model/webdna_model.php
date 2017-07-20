@@ -18,7 +18,7 @@ class WebDNA_Model {
         return array_slice(array_reverse($this->_data),$index*10,$num);
     }
 
-    function insert($name = '',$url = '',$re = '',$key = ''){
+    function insert($name = '',$url = '',$re = '',$md5 = ''){
         $temp = array(
             "url" => $url,
             "name" => $name,
@@ -28,5 +28,12 @@ class WebDNA_Model {
         $this->_data[] = $temp;
         $data = json_encode($this->_data);
         file_put_contents($this->filename,$data);
+    }
+
+    function delete($index){
+        array_splice($this->_data, $index, 1);
+        $data = json_encode($this->_data);
+        file_put_contents($this->filename,$data);
+        // array_splice($this->_data, $index, 1); 
     }
 }

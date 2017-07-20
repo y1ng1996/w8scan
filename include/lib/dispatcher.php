@@ -100,6 +100,11 @@
             ),
             array(
                 'controller' => 'WebDNA_Controller',
+                'method' => 'delete',
+                'reg_0' => '|^.*/\?webdna_manager/delete/(\d+)?|'
+            ),
+            array(
+                'controller' => 'WebDNA_Controller',
                 'method' => 'manager',
                 'reg_0' => '|^.*/\?webdna_manager(/)?(\d+)?|'
             ),

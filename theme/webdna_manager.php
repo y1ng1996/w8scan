@@ -21,21 +21,21 @@ IsLogin()
 					</tr>
 				</thead>
 				<tbody>
-				<?php foreach($logDate as $v):?>
+				<?php foreach($logDate as $k=>$v):?>
 				<tr class="list-users">
 					<td><?php echo htmlClean($v["name"]);?></td>
 					<td><?php echo htmlClean($v["url"]);?></td>
 					<td><?php echo htmlClean($v["re"]);?></td>
 					<td><?php echo htmlClean($v["md5"]);?></td>
 					<td>
-                    <a class="btn btn-mini" href="#">删除</a>
+                    <a class="btn btn-mini" href="?webdna_manager/delete/<?php echo $lognum - ($page-1)*10-$k-1?>">删除</a>
 					</td>
 				</tr>
 				<?php endforeach;?>
 				</tbody>
 			</table>
 			<?php echo $page_url;?>
-			<a href="new-user.html" class="btn btn-success">New User</a>
+			<a href="?webdna_add" class="btn btn-success">新指纹</a>
 		  </div>
         </div>
       </div>
