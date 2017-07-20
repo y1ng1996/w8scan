@@ -83,6 +83,10 @@
         $res = $this->db->query($sql);
     }
 
+    function update_Status($token,$status){
+        $sql = "update " . DB_PREFIX . "tasklist set status = '$data' where token='$token'";
+        $res = $this->db->query($sql);
+    }
     /**
 	 * 删除文章
 	 *

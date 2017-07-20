@@ -54,6 +54,12 @@ class w8_report(object):
             w8_Common.post(_B + "?send/"+_Token,"data=" + content)
         except Exception,e:
             print Exception,":",e
+    # 发送完成信号
+    def send_finish(self):
+        try:
+            w8_Common.post(_B + "?send/"+_Token,"flag=1")
+        except Exception,e:
+            print Exception,":",e
 
     def add(self,key,data):
         self.data[key] = data
@@ -153,6 +159,8 @@ if splugins is not None:
     ww = SpiderMain(_U)
     ww.craw()
 
+# 发送完成信号
+report.send_finish()
 if __name__ == '__main__':
     pass
     # w8_Common.getheaders("https://www.baidu.com")

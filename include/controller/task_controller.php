@@ -38,9 +38,14 @@ class Task_Controller {
     // 更新数据页面
     function reciver_data($params = ''){
         $data = addslashes($_POST["data"]);
-        if($params[1]=='/'&&!empty($params[2])&&!empty($data)){
+        $flag_ = addslashes($_POST["flag"]);
+        if($params[1]=='/'&&!empty($params[2])&&(!empty($data)||!empty($flag_))){
             $token = $params[2];
             $task = new Task_Model();
+            if($flag_){
+                $task->update_Status($token,"1");
+                exit();
+            }
             $task->update_Result($token,$data);
             echo "success!";
         }else{
