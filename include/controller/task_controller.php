@@ -9,7 +9,7 @@ class Task_Controller {
             // 开始处理提交表单
             $task = new Task_Model();
             $uid = (int)$_SESSION["uid"];
-            $token = $task->add(addslashes($_POST["url"]),addslashes($_POST["descript"]),$_POST["plugins"],$_POST["spider_plugins"],$uid);
+            $token = $task->add(addslashes($_POST["url"]),addslashes($_POST["descript"]),$_POST["plugins"],$_POST["spider_plugins"],$_POST["poc"],$uid);
             $callback_url = BLOG_URL.'?get/'.$token;
         }
         include View::getView("header");

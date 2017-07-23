@@ -5,6 +5,7 @@ if($info):
     $url = $info["url"];
     $spider_plugins = unserialize($info["spider_plugins"]);
     $plugins = unserialize($info["plugins"]);
+    $poc = unserialize($info["poc"]);
     if(count($plugins)){
         foreach($plugins as $k=>$v){
         $plugins[$k] = BLOG_URL."py/plugins/".$v;
@@ -13,6 +14,11 @@ if($info):
     if(count($spider_plugins)){
         foreach($spider_plugins as $k=>$v){
                 $spider_plugins[$k] = BLOG_URL."py/spider/".$v;
+        }
+    }
+    if(count($poc)){
+        foreach($poc as $k=>$v){
+                $poc[$k] = BLOG_URL."py/poc/".$v;
         }
     }
 ?>
@@ -28,6 +34,7 @@ else:
     _C = True
     _Plugin = '<?php echo json_encode($plugins);?>'
     _SPlugin = '<?php echo json_encode($spider_plugins);?>'
+    _POC = '<?php echo json_encode($poc);?>'
     _B = '<?php echo BLOG_URL;?>'
     _U = '<?php echo $url;?>'.rstrip('/')
     _Token = '<?php echo $token;?>'

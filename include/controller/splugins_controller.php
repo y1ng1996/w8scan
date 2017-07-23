@@ -24,6 +24,17 @@
         }
      }
 
+    function DisplayOnPoc(){
+        $spider = new Splugins_Model();
+        $infos = $spider->Getinfo(EMLOG_ROOT."/py/poc");
+        // print_r($info);
+        foreach($infos as $info){
+            $descipt = $info["name"];
+            $name = $info["path"];
+            echo "<input type='checkbox' value='{$name}' name='poc[]'> {$descipt}";
+        }
+     }
+
      function getCount(){
          $spider = new Splugins_Model();
          $infos = $spider->Getinfo(EMLOG_ROOT."/py/plugins");

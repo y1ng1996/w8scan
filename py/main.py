@@ -10,9 +10,10 @@ exec(code.read())
 # hh = hackhttp()
 # code, head, body, redirect, log = hh.http('https://blog.yesfree.pw')
 # print code,head,body
-global plugin,splugins
+global plugin,splugins,poc
 plugin = json.loads(_Plugin)
 splugins = json.loads(_SPlugin)
+poc = json.loads(_POC)
 
 code = urllib.urlopen(_B + "py/common/w8_comon.py")
 exec(code.read())
@@ -155,6 +156,11 @@ if plugin is not None:
         code = urllib.urlopen(temp_plugin).read()
         exec code
 
+if poc is not None:
+    for temp_ppc in poc:
+        code = urllib.urlopen(temp_ppc).read()
+        exec code
+        
 if splugins is not None:
     ww = SpiderMain(_U)
     ww.craw()

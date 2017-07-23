@@ -66,6 +66,15 @@ IsLogin()
                 ?>
                 </div>
             </div>
+            <div class="control-group">
+                <label class="control-label" for="slug">POC验证</label>
+                <div class="controls">
+                    <?php 
+                    $spider = new Splugins_Controller();
+                    $spider->DisplayOnPoc();
+                    ?>
+                </div>
+            </div>
             <div class="form-actions">
                 <input type="submit" class="btn btn-success btn-large" value="Save Role" /> <a class="btn" href="roles.html">Cancel</a>
             </div>					

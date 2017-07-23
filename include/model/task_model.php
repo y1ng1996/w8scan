@@ -31,7 +31,7 @@
 	}
 
 
-    function add($url,$descript,$plugins,$spider_plugins,$uid){
+    function add($url,$descript,$plugins,$spider_plugins,$poc,$uid){
         $logData = array();
         $logData["url"] = $url;
         $logData["descript"] = $descript;
@@ -39,6 +39,7 @@
         $logData["addtime"] = time();
         $logData["spider_plugins"] = serialize($spider_plugins);
         $logData["plugins"] = serialize($plugins);
+        $logData["poc"] = serialize($poc);
         $logData["token"] = $this->build_token();
         $logData["uid"] = $uid;
         $logData["result"] = '';
