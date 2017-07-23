@@ -5,24 +5,25 @@
 import sys
 import urlparse
 
-DIR_PROBE_EXTS = ['.tar.gz', '.zip', '.rar', '.tar.bz2']
-FILE_PROBE_EXTS = ['.bak', '.swp', '.1']
 
-def get_parent_paths(path):
-    paths = []
-    if not path or path[0] != '/':
-        return paths
-    paths.append(path)
-    tph = path
-    if path[-1] == '/':
-        tph = path[:-1]
-    while tph:
-        tph = tph[:tph.rfind('/')+1]
-        paths.append(tph)
-        tph = tph[:-1]
-    return paths
 
 def run(url='',body=''):
+    DIR_PROBE_EXTS = ['.tar.gz', '.zip', '.rar', '.tar.bz2']
+    FILE_PROBE_EXTS = ['.bak', '.swp', '.1']
+    
+    def get_parent_paths(path):
+        paths = []
+        if not path or path[0] != '/':
+            return paths
+        paths.append(path)
+        tph = path
+        if path[-1] == '/':
+            tph = path[:-1]
+        while tph:
+            tph = tph[:tph.rfind('/')+1]
+            paths.append(tph)
+            tph = tph[:-1]
+        return paths
     pr = urlparse.urlparse(url)
     paths = get_parent_paths(pr.path)
     web_paths = []
