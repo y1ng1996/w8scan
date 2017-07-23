@@ -45,4 +45,24 @@ class WebDNA_Controller {
         }
         
     }
+
+    function search($params = ''){
+        $key = $params[1];
+        $WebDNA = new WebDNA_Model();
+        
+        /*$total_pages = ceil($lognum / 10);
+        if ($page > $total_pages) {
+            $page = $total_pages;
+        }
+		$pageurl .= BLOG_URL.'?webdna_manager/';
+        $page_url = pagination($lognum, 10, $page, $pageurl);
+        $logDate = $WebDNA->getdata($page-1,10);*/
+        $logDate = $WebDNA->search($key);
+        $lognum = count($logDate);
+        /*echo $key;
+        var_dump($logDate);
+        die();*/
+        include View::getView("header");
+        include View::getview("webdna_manager"); 
+    }
 }

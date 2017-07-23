@@ -105,6 +105,11 @@
             ),
             array(
                 'controller' => 'WebDNA_Controller',
+                'method' => 'search',
+                'reg_0' => '|^.*/\?webdna_manager/search/(.+)?|'
+            ),
+            array(
+                'controller' => 'WebDNA_Controller',
                 'method' => 'manager',
                 'reg_0' => '|^.*/\?webdna_manager(/)?(\d+)?|'
             ),

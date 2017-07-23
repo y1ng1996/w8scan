@@ -15,7 +15,13 @@ class WebDNA_Model {
     }
 
     function getdata($index = 0,$num = 10){
-        return array_slice(array_reverse($this->_data),$index*10,$num);
+        
+        $back_arr = array_slice(array_reverse($this->_data),$index*10,$num);
+        foreach($back_arr as $key=>$v){
+            $index = $this->getIndexByArr($v);
+            $back_arr[$key]["index"] = $index;
+        }
+        return $back_arr;
     }
 
     function insert($name = '',$url = '',$re = '',$md5 = ''){
@@ -35,5 +41,21 @@ class WebDNA_Model {
         $data = json_encode($this->_data);
         file_put_contents($this->filename,$data);
         // array_splice($this->_data, $index, 1); 
+    }
+
+    function search($key){
+        $back_arr = array();
+        foreach($this->_data as $val){
+            if(stripos($val["name"], $key) !== false){
+                $index = $this->getIndexByArr($val);
+                $val["index"] = $index;
+                $back_arr[] = $val;
+            }
+        }
+        return $back_arr;
+    }
+
+    function getIndexByArr($arr){
+        return array_search($arr,$this->_data);
     }
 }

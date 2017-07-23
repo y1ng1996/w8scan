@@ -8,7 +8,22 @@ IsLogin()
         <div class="span9">
 		  <div class="row-fluid">
 			<div class="page-header">
-				<h1>指纹管理 <small>WebDNA total:<?php echo $lognum;?></small></h1>
+			<script>
+				function formSubmit()
+				{
+				key = $("#webkey").val();
+				window.location.href="?webdna_manager/search/" + key;
+				}
+
+			</script>
+				<h1>指纹管理 <small>WebDNA total:<?php echo $lognum;?></small>
+				<div class="input-group" style="float:right">
+				<input type="text" class="form-control" placeholder="Search for..." id="webkey">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button" onclick="formSubmit()" style="margin-bottom: 12px;">搜索</button>
+				</span>
+				</div>
+				</h1>
 			</div>
 			<table class="table table-striped table-bordered table-condensed">
 				<thead>
@@ -28,7 +43,8 @@ IsLogin()
 					<td><?php echo htmlClean($v["re"]);?></td>
 					<td><?php echo htmlClean($v["md5"]);?></td>
 					<td>
-                    <a class="btn btn-mini" href="?webdna_manager/delete/<?php echo $lognum - ($page-1)*10-$k-1?>">删除</a>
+                    <a class="btn btn-mini" href="?webdna_manager/delete/<?php echo $v["index"];?>">删除</a>
+					
 					</td>
 				</tr>
 				<?php endforeach;?>
@@ -39,20 +55,4 @@ IsLogin()
 		  </div>
         </div>
       </div>
-    <script>
-	$(document).ready(function() {
-		$('.dropdown-menu li a').hover(
-		function() {
-			$(this).children('i').addClass('icon-white');
-		},
-		function() {
-			$(this).children('i').removeClass('icon-white');
-		});
-		
-		if($(window).width() > 760)
-		{
-			$('tr.list-users td div ul').addClass('pull-right');
-		}
-	});
-	</script>
     <?php include View::getview("footer");?>
