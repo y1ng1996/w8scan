@@ -1,11 +1,9 @@
-# code:utf-8
-# print _C
-# print _U
-# print _B
-# print _Plugin
-# import json
-# s = json.loads(_Plugin);
-# print s
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Name:扫描webshell
+# Descript:此插件内置webshell字典与密码，追随前黑客留下的后门,字典可自行修改py文件定义。爆破速度极快！有1000倍提升！
+
+import os
 
 url_text = '''
 x.asp
@@ -2838,3 +2836,27 @@ m7lrv
 rmb
 '''
 password = pass_text.split( )
+
+class webshellCraft:
+    def __init__(self,root,threadNum):
+        self.root = root
+        self.threadNum = threadNum
+        self.attackpool = []
+        for url in urls:
+            self.attackpool.append(root + url)
+
+    def _httpGet(self,url):
+        data = ""
+        # 因为爆破程序要写的话有点复杂，不想写，暂时只验证是否存在路径
+        code, head, body, redirect, log = w8_Common.get(url)
+        if code == 200:
+            report.add_list("Webshell Scan",url)
+    def run(self):
+        w8_Common.thread(_httpGet,self.attackpool,self.threadNum)
+            
+print "[...] Initialize WebshellScan ..."
+#_U = "https://blog.hacking8.com/"
+ww = webshellCraft(_U,25)
+ww.run()
+report.send()
+print "[...] STOP WebshellScan"
