@@ -144,6 +144,7 @@ class SpiderMain(object):
 # _U = 'http://www.adfun.cn/'
 
 report = w8_report()
+_IP = w8_Common.gethostbyname(_U)
 
 def GetBaseInfo():
     report.add("server",w8_Common.getheaders(_U))
