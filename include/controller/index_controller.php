@@ -22,6 +22,7 @@ class Index_Controller {
                 $userData = $this->Model_user->getUser($username,$password);
                 $_SESSION["user"] = $userData["user"];
                 $_SESSION["uid"] = $userData["id"];
+                $_SESSION["admin"] = $userData["vip"]==1?true:false;
                 emDirect("./");
             }else{
                 emMsg("用户名或密码错误");

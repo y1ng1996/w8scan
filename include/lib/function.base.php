@@ -118,17 +118,6 @@ function realUrl() {
     return $real_url;
 }
 
-function isIE6Or7() {
-    if (isset($_SERVER['HTTP_USER_AGENT'])) {
-        if (strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 7.0") || strpos($_SERVER['HTTP_USER_AGENT'], "MSIE 6.0")) {
-            return true;
-        }
-    }
-    return false;
-}
-
-
-
 /**
  * 验证email地址格式
  */
@@ -181,56 +170,6 @@ function subString($strings, $start, $length) {
 }
 
 /**
- * 从可能包含html标记的内容中萃取纯文本摘要
- *
- * @param string $data
- * @param int $len
- */
-function extractHtmlData($data, $len) {
-    $data = subString(strip_tags($data), 0, $len + 30);
-    $search = array("/([\r\n])[\s]+/", // 去掉空白字符
-        "/&(quot|#34);/i", // 替换 HTML 实体
-        "/&(amp|#38);/i",
-        "/&(lt|#60);/i",
-        "/&(gt|#62);/i",
-        "/&(nbsp|#160);/i",
-        "/&(iexcl|#161);/i",
-        "/&(cent|#162);/i",
-        "/&(pound|#163);/i",
-        "/&(copy|#169);/i",
-        "/\"/i",
-    );
-    $replace = array(" ", "\"", "&", " ", " ", "", chr(161), chr(162), chr(163), chr(169), "");
-    $data = trim(subString(preg_replace($search, $replace, $data), 0, $len));
-    return $data;
-}
-
-/**
- * 转换附件大小单位
- *
- * @param string $fileSize 文件大小 kb
- */
-function changeFileSize($fileSize) {
-    if ($fileSize >= 1073741824) {
-        $fileSize = round($fileSize / 1073741824, 2) . 'GB';
-    } elseif ($fileSize >= 1048576) {
-        $fileSize = round($fileSize / 1048576, 2) . 'MB';
-    } elseif ($fileSize >= 1024) {
-        $fileSize = round($fileSize / 1024, 2) . 'KB';
-    } else {
-        $fileSize = $fileSize . '字节';
-    }
-    return $fileSize;
-}
-
-/**
- * 获取文件名后缀
- */
-function getFileSuffix($fileName) {
-    return strtolower(pathinfo($fileName,  PATHINFO_EXTENSION));
-}
-
-/**
  * 分页函数
  *
  * @param int $count 条目总数
@@ -271,36 +210,6 @@ function pagination($count, $perlogs, $page, $url, $anchor = '') {
 	$re = '<ul class="pagination">'.$re;
     $re .= '</ul>';
 	return $re;
-}
-
-/**
- * 该函数在插件中调用,挂载插件函数到预留的钩子上
- *
- * @param string $hook
- * @param string $actionFunc
- * @return boolearn
- */
-function addAction($hook, $actionFunc) {
-    global $emHooks;
-    if (!@in_array($actionFunc, $emHooks[$hook])) {
-        $emHooks[$hook][] = $actionFunc;
-    }
-    return true;
-}
-
-/**
- * 执行挂在钩子上的函数,支持多参数 eg:doAction('post_comment', $author, $email, $url, $comment);
- *
- * @param string $hook
- */
-function doAction($hook) {
-    global $emHooks;
-    $args = array_slice(func_get_args(), 1);
-    if (isset($emHooks[$hook])) {
-        foreach ($emHooks[$hook] as $function) {
-            $string = call_user_func_array($function, $args);
-        }
-    }
 }
 
 
@@ -412,32 +321,6 @@ function getMonthDayNum($month, $year) {
 
 
 /**
- * 删除文件或目录
- */
-function emDeleteFile($file) {
-    if (empty($file))
-        return false;
-    if (@is_file($file))
-        return @unlink($file);
-    $ret = true;
-    if ($handle = @opendir($file)) {
-        while ($filename = @readdir($handle)) {
-            if ($filename == '.' || $filename == '..')
-                continue;
-            if (!emDeleteFile($file . '/' . $filename))
-                $ret = false;
-        }
-    } else {
-        $ret = false;
-    }
-    @closedir($handle);
-    if (file_exists($file) && !rmdir($file)) {
-        $ret = false;
-    }
-    return $ret;
-}
-
-/**
  * 页面跳转
  */
 function emDirect($directUrl) {
@@ -533,6 +416,18 @@ function IsLogin(){
         return false;
     }
     return true;
+}
+
+/**
+ * 检测是否为管理员
+ *
+ *
+ */
+function IsAdmim(){
+    if(!empty($_SESSION["admin"])&&$_SESSION["admin"]==TRUE){
+        return TRUE;
+    }
+    return FALSE;
 }
 
 /**

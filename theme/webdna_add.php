@@ -1,6 +1,10 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
-IsLogin()
+IsLogin();
+if(!IsAdmim()){
+    emMsg("没有管理员权限");
+}
+
 ?>
 <div class="container-fluid">
 <div class="row-fluid">
