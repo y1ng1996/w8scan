@@ -55,4 +55,19 @@
         }
     }
 
+    /**
+	 * 判断用户名是否存在
+	 *
+	 * @param string $login
+	 * @return boolean
+	 */
+	function isUserExist($login) {
+        $data = $this->db->once_fetch_array("SELECT COUNT(*) AS total FROM ".DB_PREFIX."user WHERE user='$login'");
+		if ($data['total'] > 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
 }

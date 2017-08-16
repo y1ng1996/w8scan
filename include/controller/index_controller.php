@@ -40,6 +40,12 @@ class Index_Controller {
             $logData["vip"] = 0;
             $secode = addslashes($_POST["secode"]);
             if($secode === REG_CODE){
+                // 检测用户名是否已被注册
+                if($this->Model_user->isUserExist($logData["user"])){
+                    emMsg("已有重复的用户名");
+                    exit();
+                }
+
                 if($this->Model_user->insertData($logData)){
                     $return_msg = "注册成功！";
                 }else{
