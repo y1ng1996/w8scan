@@ -2852,7 +2852,7 @@ class webshellCraft:
         if code == 200:
             report.add_list("Webshell Scan",url)
     def run(self):
-        w8_Common.thread(_httpGet,self.attackpool,self.threadNum)
+        w8_Common.thread(self._httpGet,self.attackpool,self.threadNum)
             
 print "[...] Initialize WebshellScan ..."
 #_U = "https://blog.hacking8.com/"
